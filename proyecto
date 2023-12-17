@@ -1,0 +1,26 @@
+CREATE DATABASE  IF NOT EXISTS `ositofeliz`;
+USE `ositofeliz`;
+
+--
+-- Table structure for table `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+
+CREATE TABLE `order_items` (
+  `order_item_id` bigint unsigned NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `order_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `is_primary_item` smallint unsigned NOT NULL,
+  `price_usd` decimal(6,2) NOT NULL,
+  `cogs_usd` decimal(6,2) NOT NULL,
+  PRIMARY KEY (`order_item_id`),
+  KEY `order_fk_idx` (`order_id`),
+  KEY `product_fk` (`product_id`),
+  CONSTRAINT `order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  CONSTRAINT `product_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ;
+
+
+SELECT * FROM ;
